@@ -123,9 +123,9 @@ const Navbar = () => {
     <motion.nav 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[88%] md:w-auto md:min-w-[500px] max-w-5xl glass px-4 md:px-8 py-2 md:py-3 rounded-[1.5rem] md:rounded-full flex items-center justify-between shadow-2xl"
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-auto md:min-w-[500px] max-w-5xl glass px-4 md:px-8 py-2 md:py-3 rounded-2xl md:rounded-full flex items-center justify-between shadow-2xl active:scale-[0.98] transition-transform"
     >
-      <div className="text-xl font-black tracking-tighter text-white">M.<span className="text-brand-cyan">Sowrav</span></div>
+      <div className="text-lg md:text-xl font-black tracking-tighter text-white">M.<span className="text-brand-cyan">Sowrav</span></div>
       
       {/* Desktop Links */}
       <div className="hidden md:flex gap-8 text-sm font-medium text-slate-400">
@@ -181,12 +181,12 @@ const SkillMarquee = () => {
   ];
   
   return (
-    <div className="py-12 md:py-20 overflow-hidden bg-white/[0.02] border-y border-white/5">
+    <div className="py-8 md:py-20 overflow-hidden bg-white/[0.02] border-y border-white/5">
       <div className="flex whitespace-nowrap animate-marquee-fast">
-        {[...skills, ...skills].map((skill, i) => (
+        {[...skills, ...skills, ...skills].map((skill, i) => (
           <span 
             key={i} 
-            className="text-xl md:text-5xl font-black text-white/20 hover:text-brand-cyan/40 transition-colors px-6 md:px-12 uppercase italic tracking-tighter"
+            className="text-lg md:text-5xl font-black text-white/20 hover:text-brand-cyan/40 transition-colors px-4 md:px-12 uppercase italic tracking-tighter"
           >
             {skill}
           </span>
@@ -200,7 +200,7 @@ const Hero = ({ onEnterHero, onLeaveHero }: { onEnterHero: () => void, onLeaveHe
   <header 
     onMouseEnter={onEnterHero} 
     onMouseLeave={onLeaveHero}
-    className="relative pt-20 pb-16 md:pt-48 md:pb-32 px-6 overflow-visible min-h-[90vh] flex items-center"
+    className="relative pt-24 pb-12 md:pt-48 md:pb-32 px-6 overflow-visible min-h-[85vh] flex items-center"
   >
     {/* Sticky Left Badge */}
     <div className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden xl:block">
