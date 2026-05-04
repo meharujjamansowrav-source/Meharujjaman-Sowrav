@@ -87,6 +87,10 @@
   animation: marquee 30s linear infinite;
 }
 
+.animate-marquee-fast {
+  animation: marquee 15s linear infinite;
+}
+
 /* Custom Cursor Effects */
 .cursor-dot {
   @apply fixed pointer-events-none z-[100] w-6 h-6 bg-white rounded-full mix-blend-difference transition-transform duration-300 ease-out;

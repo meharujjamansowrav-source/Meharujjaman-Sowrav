@@ -81,7 +81,7 @@ const CustomCursor = ({ active }: { active: boolean }) => {
       <motion.div
         className="cursor-dot hidden md:block"
         animate={{
-          scale: active && !isPointer ? 12 : (isPointer ? 0.3 : 1),
+          scale: active && !isPointer ? 18 : (isPointer ? 0.3 : 1),
           opacity: 1,
           backgroundColor: active && !isPointer ? "#ffffff" : (isPointer ? "#22D3EE" : "#ffffff")
         }}
@@ -123,7 +123,7 @@ const Navbar = () => {
     <motion.nav 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] md:w-[92%] max-w-5xl glass px-4 md:px-8 py-3 rounded-2xl md:rounded-full flex items-center justify-between"
+      className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[88%] md:w-auto md:min-w-[500px] max-w-5xl glass px-4 md:px-8 py-2 md:py-3 rounded-[1.5rem] md:rounded-full flex items-center justify-between shadow-2xl"
     >
       <div className="text-xl font-black tracking-tighter text-white">M.<span className="text-brand-cyan">Sowrav</span></div>
       
@@ -181,12 +181,12 @@ const SkillMarquee = () => {
   ];
   
   return (
-    <div className="py-20 overflow-hidden bg-white/[0.02] border-y border-white/5">
-      <div className="flex whitespace-nowrap animate-marquee">
+    <div className="py-12 md:py-20 overflow-hidden bg-white/[0.02] border-y border-white/5">
+      <div className="flex whitespace-nowrap animate-marquee-fast">
         {[...skills, ...skills].map((skill, i) => (
           <span 
             key={i} 
-            className="text-3xl md:text-5xl font-black text-white/20 hover:text-brand-cyan/40 transition-colors px-12 uppercase italic tracking-tighter"
+            className="text-xl md:text-5xl font-black text-white/20 hover:text-brand-cyan/40 transition-colors px-6 md:px-12 uppercase italic tracking-tighter"
           >
             {skill}
           </span>
@@ -200,7 +200,7 @@ const Hero = ({ onEnterHero, onLeaveHero }: { onEnterHero: () => void, onLeaveHe
   <header 
     onMouseEnter={onEnterHero} 
     onMouseLeave={onLeaveHero}
-    className="relative pt-28 pb-20 md:pt-48 md:pb-32 px-6 overflow-visible min-h-[90vh] flex items-center"
+    className="relative pt-20 pb-16 md:pt-48 md:pb-32 px-6 overflow-visible min-h-[90vh] flex items-center"
   >
     {/* Sticky Left Badge */}
     <div className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden xl:block">
@@ -224,7 +224,7 @@ const Hero = ({ onEnterHero, onLeaveHero }: { onEnterHero: () => void, onLeaveHe
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            animate={{ opacity: 1, y: 0 }}
-           className="xl:hidden mb-12"
+           className="xl:hidden mb-6"
         >
           <a href="https://wa.me/8801891645612" target="_blank" rel="noreferrer" className="px-4 py-2 rounded-full glass border-white/20 flex items-center gap-3 w-fit mx-auto">
             <div className="w-2 h-2 bg-green-500 rounded-full shadow-[0_0_10px_rgba(34,197,94,0.5)] animate-pulse" />
@@ -238,9 +238,9 @@ const Hero = ({ onEnterHero, onLeaveHero }: { onEnterHero: () => void, onLeaveHe
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          className="relative mb-8"
+          className="relative mb-4"
         >
-          <div className="w-32 h-32 md:w-56 md:h-56 rounded-full p-2 bg-white/5 overflow-hidden relative group shadow-[0_0_50px_rgba(255,255,255,0.05)]">
+          <div className="w-28 h-28 md:w-56 md:h-56 rounded-full p-2 bg-white/5 overflow-hidden relative group shadow-[0_0_50px_rgba(255,255,255,0.05)]">
             <img 
               src="https://raw.githubusercontent.com/meharujjamansowrav-source/sowrav/refs/heads/main/public/images/hero.jpg" 
               className="w-full h-full object-cover rounded-full transition-all duration-700"
@@ -260,7 +260,7 @@ const Hero = ({ onEnterHero, onLeaveHero }: { onEnterHero: () => void, onLeaveHe
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-5xl md:text-[7.5rem] font-black leading-[1.1] md:leading-[1] tracking-tight mb-10 max-w-6xl text-white py-8"
+          className="text-5xl md:text-[7.5rem] font-black leading-[1.1] md:leading-[1] tracking-tight mb-6 max-w-6xl text-white py-4"
         >
           Web <span className="text-brand-cyan">Designer</span>
         </motion.h1>
@@ -269,7 +269,7 @@ const Hero = ({ onEnterHero, onLeaveHero }: { onEnterHero: () => void, onLeaveHe
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-lg md:text-2xl text-slate-400 max-w-2xl mb-12 leading-relaxed"
+          className="text-base md:text-2xl text-slate-400 max-w-2xl mb-8 leading-relaxed"
         >
           Crafting digital experiences that feel intuitive, look beautiful, and solve real problems with <span className="text-white italic">WordPress & SEO.</span>
         </motion.p>
@@ -455,7 +455,7 @@ const About = () => (
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover/img:opacity-40 transition-opacity" />
           <div className="absolute bottom-10 left-10 text-brand-cyan group-hover:scale-110 transition-transform">
              <div className="text-5xl md:text-7xl font-black mb-1 p-0 drop-shadow-2xl">5+</div>
-             <div className="text-xs md:text-base uppercase tracking-[0.4em] font-black border-l-4 border-brand-cyan pl-4">Years of Expertise</div>
+             <div className="text-sm md:text-lg uppercase tracking-[0.4em] font-black border-l-4 border-brand-cyan pl-4">Years of Expertise</div>
           </div>
         </div>
       </div>
