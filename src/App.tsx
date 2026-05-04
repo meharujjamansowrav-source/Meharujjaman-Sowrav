@@ -73,6 +73,9 @@ const CustomCursor = ({ active }: { active: boolean }) => {
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
+  // Disable on mobile/tablet for performance
+  if (typeof window !== 'undefined' && window.innerWidth < 768) return null;
+
   return (
     <>
       <motion.div
@@ -120,7 +123,7 @@ const Navbar = () => {
     <motion.nav 
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-5xl glass px-5 md:px-8 py-3 rounded-2xl md:rounded-full flex items-center justify-between"
+      className="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-2rem)] md:w-[92%] max-w-5xl glass px-4 md:px-8 py-3 rounded-2xl md:rounded-full flex items-center justify-between"
     >
       <div className="text-xl font-black tracking-tighter text-white">M.<span className="text-brand-cyan">Sowrav</span></div>
       
@@ -197,7 +200,7 @@ const Hero = ({ onEnterHero, onLeaveHero }: { onEnterHero: () => void, onLeaveHe
   <header 
     onMouseEnter={onEnterHero} 
     onMouseLeave={onLeaveHero}
-    className="relative pt-32 pb-20 md:pt-48 md:pb-32 px-6 overflow-visible min-h-[90vh] flex items-center"
+    className="relative pt-28 pb-20 md:pt-48 md:pb-32 px-6 overflow-visible min-h-[90vh] flex items-center"
   >
     {/* Sticky Left Badge */}
     <div className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden xl:block">
@@ -278,10 +281,10 @@ const Hero = ({ onEnterHero, onLeaveHero }: { onEnterHero: () => void, onLeaveHe
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-wrap justify-center gap-6"
         >
-          <a href="#portfolio" className="bg-white text-black px-10 py-5 rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/10 hover:bg-brand-cyan">
+          <a href="#portfolio" className="bg-white text-black px-8 py-4 rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-xl shadow-white/10 hover:bg-brand-cyan">
             View my work
           </a>
-          <a href="#about" className="px-10 py-5 rounded-full font-bold text-lg bg-white/5 backdrop-blur-[120px] border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center gap-3 text-white shadow-[0_0_80px_rgba(255,255,255,0.05)] hover:border-brand-cyan/50">
+          <a href="#about" className="px-8 py-4 rounded-full font-bold text-lg bg-white/5 backdrop-blur-[120px] border border-white/20 hover:bg-white/10 transition-all flex items-center justify-center gap-3 text-white shadow-[0_0_80px_rgba(255,255,255,0.05)] hover:border-brand-cyan/50">
              <Users size={18} /> About me
           </a>
         </motion.div>
@@ -408,7 +411,7 @@ const Portfolio = () => {
         <div className="mt-12 flex justify-center">
           <button 
             onClick={() => setLimit(limit + 3)}
-            className="glass px-10 py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-brand-cyan hover:text-black transition-all shadow-2xl"
+            className="glass px-8 py-4 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-brand-cyan hover:text-black transition-all shadow-2xl"
           >
             Load More Works
           </button>
@@ -452,7 +455,7 @@ const About = () => (
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80 group-hover/img:opacity-40 transition-opacity" />
           <div className="absolute bottom-10 left-10 text-brand-cyan group-hover:scale-110 transition-transform">
              <div className="text-5xl md:text-7xl font-black mb-1 p-0 drop-shadow-2xl">5+</div>
-             <div className="text-[11px] md:text-sm uppercase tracking-[0.4em] font-black border-l-4 border-brand-cyan pl-4">Years of Expertise</div>
+             <div className="text-xs md:text-base uppercase tracking-[0.4em] font-black border-l-4 border-brand-cyan pl-4">Years of Expertise</div>
           </div>
         </div>
       </div>
@@ -537,20 +540,20 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-10 md:py-32 px-4 md:px-6 max-w-5xl mx-auto">
-      <div className="glass rounded-[2rem] md:rounded-[3rem] p-8 md:p-20 text-center relative overflow-hidden">
+    <section id="contact" className="py-6 md:py-32 px-4 md:px-6 max-w-5xl mx-auto">
+      <div className="glass rounded-[2rem] md:rounded-[3rem] p-6 md:p-20 text-center relative overflow-hidden">
         <div className="absolute inset-0 bg-brand-cyan/5 blur-3xl -z-10" />
         <span className="text-brand-cyan font-black uppercase tracking-widest text-[10px] mb-6 block">Get in Touch</span>
         <h2 className="text-4xl md:text-6xl font-black text-white mb-6 md:mb-8 tracking-tighter">Let's build something <span className="text-brand-cyan italic">amazing</span> together.</h2>
         <p className="text-slate-400 text-sm md:text-lg mb-8 md:mb-12 max-w-2xl mx-auto">Currently accepting new projects. Let's discuss your vision and make it a reality.</p>
         
         <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-6 mb-12 flex-wrap items-center">
-          <a href="mailto:meharujjaman.sowrav@gmail.com" className="bg-white text-black px-8 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-lg flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all w-full sm:w-auto shadow-xl shadow-white/10">
-            <Mail size={18} /> Email Us
-          </a>
-          <a href="https://wa.me/8801891645612" target="_blank" rel="noreferrer" className="glass px-8 md:px-10 py-3 md:py-5 rounded-2xl font-bold text-base md:text-lg flex items-center justify-center gap-3 hover:bg-white/5 transition-all group w-full sm:w-auto">
-            <MessageCircle size={18} className="text-brand-cyan group-hover:animate-bounce" /> WhatsApp
-          </a>
+            <a href="mailto:meharujjaman.sowrav@gmail.com" className="bg-white text-black px-6 md:px-8 py-3 md:py-4 rounded-2xl font-bold text-sm md:text-lg flex items-center justify-center gap-3 hover:scale-105 active:scale-95 transition-all w-full sm:w-auto shadow-xl shadow-white/10">
+              <Mail size={18} /> Email Me
+            </a>
+            <a href="https://wa.me/8801891645612" target="_blank" rel="noreferrer" className="glass px-6 md:px-8 py-3 md:py-4 rounded-2xl font-bold text-sm md:text-lg flex items-center justify-center gap-3 hover:bg-white/5 transition-all group w-full sm:w-auto">
+              <MessageCircle size={18} className="text-brand-cyan group-hover:animate-bounce" /> WhatsApp
+            </a>
         </div>
 
         <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-lg mx-auto">
